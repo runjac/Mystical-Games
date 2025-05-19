@@ -1,0 +1,21 @@
+.perfil-background{
+    background-image: url('../assets/footer/marvels-el-hombre-arana-2-venom-symbiote-logo_3840x2160_xtrafondos.com.jpg');
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+.perfil-usuario{
+    width: 30%;
+    display: grid;
+    grid-template-columns: 30% auto;
+    align-items: center;
+}
+.perfil-usuario>img{
+   width: 100px;
+    border-radius: 50%;
+    height: 100px;
+    object-fit: cover;
+    
+}

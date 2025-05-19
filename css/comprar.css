@@ -1,0 +1,106 @@
+.fomurlario-comprar{
+    width: 80%;
+    display: grid;
+    grid-template-columns: 60% 30% !important;
+    padding: 20px;
+    padding-top: 40px;
+    justify-content: space-between;
+}
+
+.group-formulario{
+    margin-bottom: 10px;
+}
+.group-formulario>input{
+   width: 48%;
+   border-radius: 10px;
+   background-color: #181B1E;
+   border: none;
+   padding: 20px;
+   border: 1px solid #555555;
+
+}
+@media (max-width: 750px) {
+   .group-formulario>input{
+        width:100%;
+        margin-top: 10px;
+    }
+}
+
+.formulario-personales{
+    margin-bottom: 10px;
+}
+.formulario-personales>input{
+    border-radius: 10px;
+    border: none;
+    background-color: #181B1E;
+    padding: 20px;
+    border: 1px solid #555555;
+    margin-right: 20px;
+}
+.formulario-tarjeta{
+    background-color: #181B1E;
+    padding:20px;
+    padding-right:40px;
+    border-radius:20px;
+    border:1px solid #FFB80E;
+}
+.group-tarjeta>input{
+    border-radius: 10px;
+    background-color: #181B1E;
+    border: none;
+    padding: 20px;
+    border: 1px solid #555555;
+    margin: 10px;
+   
+}
+.group-tarjetas>input{
+    width: 98%;
+    border-radius: 10px;
+    background-color: #181B1E;
+    border: none;
+    padding: 20px;
+    border: 1px solid #555555;
+    margin: 10px;
+}
+.formulario-pagar{
+    background-color: #101010;
+    height: 200px;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.formulario-pagar>button{
+    text-decoration: none;
+    color: #181B1E;
+    text-align:center;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    width: 100%;
+    background: linear-gradient(to top, #FFB80E, #FF891D);
+}
+.resumen-pago{
+    background-color: #272626;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+.hr-pago{
+    box-shadow: 0 0 0 0.1px #4c4c4c; /* Borde muy fino */
+}
+.formulario-pagar>a:hover{
+    background: linear-gradient(to top,#FF891D, #FFB80E);
+    color: #181B1E;
+}
+@media (max-width: 1000px) {
+    .fomurlario-comprar{
+         grid-template-columns: repeat(1,100%) !important; 
+     }
+     .resumen{
+        margin-top: 20px;
+     }
+ }

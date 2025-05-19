@@ -1,0 +1,111 @@
+.carrito-productos{
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+.carrito-cesta{
+    display: grid; 
+    grid-template-columns:15% 60% 20%;
+    justify-content: space-between;
+    padding: 30px;
+    
+}
+@media (max-width: 1400px) {
+    .carrito-cesta{
+        grid-template-columns:20% 50% 30%;
+    }
+    .car-prod-text{
+        padding: 10px;
+    }
+ }
+ @media (max-width: 800px) {
+    .carrito-cesta{
+        grid-template-columns:100%;
+    }
+    .car-prod-text{
+        padding: 10px;
+    }
+ }
+.car-prod-img>img{
+    width: 100%;
+}
+.carrito-pagar{
+    background-color: #181B1E;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+}
+.car-prod-text>h3{
+    color:#fff;
+}
+.car-prod-eliminar{
+    display: flex;
+    align-items: center;
+}
+
+.car-prod-eliminar>span{
+    color: white;
+    padding:10px;
+
+}
+.hoveri:hover{
+    color: #FF891D !important;
+}
+.carrito-pagar>a{
+    text-decoration: none;
+    color: #fff;
+    border-radius: 20px;
+    text-align: center;
+    background: linear-gradient(to top, #FFB80E, #FF891D);
+}
+.pagar-car:hover{
+    background: linear-gradient(to top,#FF891D, #FFB80E);
+    color: #181B1E;
+}
+.carrito-precio{
+    display: flex;
+    align-items: center;
+}
+.carrito-precio>p{
+    margin-bottom: 0px !important;
+    padding: 10px;
+}
+.carrito-precio>select{
+    background-color: #333333; /* Cambia el color de fondo */
+    color: white; /* Cambia el color del texto */
+    padding: 10px; /* Añade padding */
+    border: none; /* Quita el borde */
+    border-radius: 5px; /* Añade bordes redondeados */
+    font-size: 16px; /* Cambia el tamaño de la fuente */
+}
+.hr-carrito{
+    box-shadow: 0 0 0 0.1px #4c4c4c; /* Borde muy fino */
+    width: 95%;
+    margin: auto;
+}
+.subtotal-pagar{
+    display: flex;
+    width: 100%;
+    justify-content: space-between !important;
+    padding: 10px;
+}
+.igv{
+    display: flex;
+    width: 100%;
+    justify-content: space-between !important;
+    padding: 10px;;
+}
+.total{
+    display: flex;
+    width: 100%;
+    justify-content: space-between !important;
+    padding: 10px;;
+}

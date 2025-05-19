@@ -1,0 +1,153 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+.centrar{
+    display: flex;
+    align-items: center;
+}
+.between{
+    display: flex;
+    justify-content: space-between;
+}
+.nclaro{
+    color: #FF891D;
+}
+.noscuro{
+    color: #FF4A20;
+}
+.yclaro{
+    color: #FFB80E !important;
+}
+.aclaro{
+    color: #0079FF;
+}
+.aoscuro{
+    color: #004BB3;
+}
+
+.fblack {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+.fmerriweather {
+    font-family: "Merriweather Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  
+  }
+.login-container {
+    height: 100vh;
+    width: 100%;
+}
+.login-image {
+    background-image: url('../assets/footer/personajes-de-god-of-war-ragnrok_3840x2160_xtrafondos.com.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.login-images {
+    background-image: url('../assets/footer/spider-man-symbiote-transformacion_5120x2880_xtrafondos.com.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.degradado1{
+    background: linear-gradient(to top, #0079FF, #004BB3)!important;
+
+}
+.degradado2{
+    background: linear-gradient(to top, #FFB80E, #FF891D)!important;
+
+}
+.datos > input {
+    border-radius: 0px !important;
+    background-color: rgba(255, 255, 255, 0) !important;
+    border: none !important; /* Elimina todos los bordes */
+    border-bottom: 1px solid #FFB80E !important; /* Solo la línea inferior visible */
+    color: white !important; /* Color del texto */
+    outline: none !important; /* Elimina el borde al enfocar */
+    box-shadow: none !important; /* Elimina la sombra al enfocar */
+}
+
+.datos > input::placeholder {
+    color: white;
+}
+.login{
+    width: 100%;
+    height: 100%;
+}
+
+.login-form {
+    width: 50%;
+}
+.login-forms {
+    width: 50%;
+}
+.login-image{
+    width: 50%;
+}
+.login-images{
+    width: 50%;
+}
+@media (max-width: 1000px) {
+    .login-images {
+        display: none;
+    }
+    .login-forms{
+        width: 100%;
+        background-image: url('../assets/footer/venom-en-spider-man-2_5120x2880_xtrafondos.com.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+
+
+    }
+    .login-image {
+        display: none;
+    }
+    .login-form{
+        width: 100%;
+        background-image: url('../assets/footer/god-of-war-ragnarok_3840x2160_xtrafondos.co.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+
+
+    }
+    .degradado2{
+        background-color: white;
+    }
+}
+
+.logo-brand>a{
+    text-decoration: none;
+    margin-bottom: 50px;
+}
+
+ /* Estilo para el input */
+ .form-control {
+    color: white; /* Color del texto */
+}
+
+/* Estilo para el placeholder */
+::-webkit-input-placeholder {
+    color: white; /* Color del placeholder */
+    opacity: 0.5; /* Transparencia del placeholder */
+}
+:-ms-input-placeholder {
+    color: white; /* Color del placeholder */
+    opacity: 0.5; /* Transparencia del placeholder */
+}
+::placeholder {
+    color: white; /* Color del placeholder */
+    opacity: 0.5; /* Transparencia del placeholder */
+}
+
+/* Estilo para el calendario */
+.form-control[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Invertir los colores del icono de calendario */
+}

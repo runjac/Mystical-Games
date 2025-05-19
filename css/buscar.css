@@ -1,0 +1,100 @@
+.buscar-background{
+    background: url('../assets/recursos/godzilla-x-kong-titan-chasers-videojuego_3840x2327_xtrafondos.com.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 0px -100px;
+    height: 200px;
+}
+.formulario-buscar{
+    margin-top: 50px;
+    width: 100%;
+    padding: 10px;
+}
+.nombre-producto{
+    background-color: #1D1D1D; /* Cambia el color de fondo */
+    color: white; /* Cambia el color del texto */
+    padding: 10px; /* Añade padding */
+    border: 1px solid #323232; /* Quita el borde */
+    border-radius: 5px; /* Añade bordes redondeados */
+    font-size: 16px; /* Cambia el tamaño de la fuente */
+}
+.nombre-producto:hover{
+    border: 1px solid #FF891D; /* Quita el borde */
+}
+.group-busca{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+.group-buscar{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+.group-buscar>date{
+    width: 32%;
+}
+.group-busca>select{
+    width: 32%;
+}
+.grupo-buscar{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap:10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.fecha-buscar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    margin-bottom: 0px !important;
+}
+.buscar-btn{
+    margin-top: 10px;
+    width: 50%;
+    border-radius: 10px;
+    background: linear-gradient(to top, #FFB80E, #FF891D);
+    color: #fff;
+    padding: 10px;
+}
+.buscar-btn:hover{
+    background: linear-gradient(to top,#FF891D, #FFB80E);
+    color: #181B1E;
+}
+
+@media (max-width: 800px) {
+    .group-busca>select{
+        width: 100%;
+    }
+}
+@media (max-width: 800px) {
+    .fecha-buscar{
+        width: 100%;
+    }
+    .fecha-buscar{
+        justify-content: left;
+    }
+    input[type="date"] {
+        width: 100%;
+    }
+    input[type="number"] {
+        width: 100%;
+    }
+}
+.finalizar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 300px;
+    padding: 20px;
+}
