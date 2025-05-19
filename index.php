@@ -1,103 +1,51 @@
 <?php
-session_start(); // Asegúrate de iniciar la sesión
+session_start();
 
-require 'conexion/conex.php';
+require_once 'config/Database.php';
+require_once 'models/Game.php';
+require_once 'models/Cart.php';
 
-// Consultas SQL...
+// Initialize database connection
+$database = new Database();
+$db = $database->getConnection();
+
+// Initialize Game model
+$gameModel = new Game($db);
+
+// Get carousel items
 $query = "SELECT carrusel_id, img, titulo, subtitulo FROM carrusel";
-$stmt = $pdo->query($query);
+$stmt = $db->query($query);
 $carrusel_items = $stmt->fetchAll();
 
-$sql = "
-SELECT
-	games.game_id, 
-	games.titulo, 
-	games.img, 
-	games.fecha_estreno, 
-	games.precio, 
-	consolas.nombres AS consola, 
-	GROUP_CONCAT(categorias.nombres SEPARATOR ', ') AS categorias, 
-	estrenos.game_id
-FROM
-	games
-	INNER JOIN
-	game_categorias
-	ON 
-		games.game_id = game_categorias.game_id
-	INNER JOIN
-	consolas
-	ON 
-		consolas.consola_id = games.console_id
-	INNER JOIN
-	categorias
-	ON 
-		game_categorias.categorias_id = categorias.categorias_id
-	INNER JOIN
-	estrenos
-	ON 
-		games.game_id = estrenos.game_id
-GROUP BY
-	games.game_id, 
-	games.titulo, 
-	games.img, 
-	games.fecha_estreno, 
-	games.precio, 
-	consolas.nombres
-";
+// Get featured games
+$games = $gameModel->getAllGames();
 
-try {
-    $stmt = $pdo->query($sql);
-    $games = $stmt->fetchAll();
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
+// Get all games
+$gamer = $gameModel->getAllGames();
 
-$sqlgame = "
-SELECT
-    games.game_id,
-	consolas.nombres, 
-	games.titulo, 
-	games.img, 
-	games.fecha_estreno, 
-	games.precio
-FROM
-	games
-	INNER JOIN
-	consolas
-	ON 
-		games.console_id = consolas.consola_id
-";
-
-try {
-    $stmti = $pdo->query($sqlgame);
-    $gamer = $stmti->fetchAll();
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
-
+// Get comments
 $sqlcomentarios="
 SELECT
-	comentarios.id_comentario, 
-	comentarios.descripcion, 
-	comentarios.fecha, 
-	comentarios.titulo, 
-	comentarios.id_usuario, 
-	comentarios.puntaje, 
-	usuarios.usuario, 
-	usuarios.foto
+    comentarios.id_comentario, 
+    comentarios.descripcion, 
+    comentarios.fecha, 
+    comentarios.titulo, 
+    comentarios.id_usuario, 
+    comentarios.puntaje, 
+    usuarios.usuario, 
+    usuarios.foto
 FROM
-	comentarios
-	INNER JOIN
-	usuarios
-	ON 
-		comentarios.id_usuario = usuarios.id_usuario
-
+    comentarios
+    INNER JOIN
+    usuarios
+    ON 
+        comentarios.id_usuario = usuarios.id_usuario
 ";
-try{
-    $stmtc = $pdo->query($sqlcomentarios);
+
+try {
+    $stmtc = $db->query($sqlcomentarios);
     $comentarios = $stmtc->fetchAll();
-}
-catch(PDOException $e){
+} catch(PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
 ?>
@@ -327,7 +275,7 @@ catch(PDOException $e){
                         </div>
                     <?php endforeach; ?>
                 <?php else:?>
-                    <p>No hay
+                    <p>No hay comentarios disponibles</p>
                 <?php endif; ?>
 
             </div>

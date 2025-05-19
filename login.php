@@ -1,30 +1,24 @@
 <?php
-session_start(); // Inicia la sesión
-require 'conexion/conex.php'; // Incluye la conexión a la base de datos
+session_start();
+
+require_once 'config/Database.php';
+require_once 'models/User.php';
+
+// Initialize database connection
+$database = new Database();
+$db = $database->getConnection();
+
+// Initialize User model
+$userModel = new User($db);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     if (!empty($email) && !empty($password)) {
-        // Prepara y ejecuta la consulta SQL para obtener el usuario por correo electrónico
-        $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($user) {
-            // Verifica la contraseña
-            if (password_verify($password, $user['password'])) {
-                // Las credenciales son correctas, iniciar sesión
-                $_SESSION['id_usuario'] = $user['id_usuario'];
-                $_SESSION['email'] = $user['email'];
-                $_SESSION['usuario'] = $user['usuario'];
-                header("Location: index.php"); // Redirige a la página de inicio
-                exit();
-            } else {
-                $error_message = "Correo o contraseña incorrectos.";
-            }
+        if ($userModel->login($email, $password)) {
+            header("Location: index.php");
+            exit();
         } else {
             $error_message = "Correo o contraseña incorrectos.";
         }

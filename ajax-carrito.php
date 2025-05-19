@@ -1,125 +1,42 @@
 <?php
-
 session_start();
-require 'conexion/conex.php';
+require_once 'config/Database.php';
+require_once 'models/Cart.php';
+
+// Initialize database connection
+$database = new Database();
+$db = $database->getConnection();
+
+// Initialize Cart model
+$cartModel = new Cart($db);
 
 $accion = isset($_GET['accion']) ? $_GET['accion'] : '';
 $id = isset($_GET['id']) ? $_GET['id'] : '';
 $cantidad = isset($_GET['cantidad']) ? $_GET['cantidad'] : 1;
 
-$carrito = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : [];
-
 $data = [];
 
 switch ($accion) {
-	case 'get':
-		echo json_encode($carrito);
-		break;
+    case 'get':
+        echo json_encode($cartModel->getCart());
+        break;
 
-	case 'add':
+    case 'add':
+        $result = $cartModel->add($id, $cantidad);
+        echo json_encode($result);
+        break;
 
-		$stmt = $pdo->prepare("SELECT * FROM games WHERE game_id = :id");
-		$stmt->execute(['id' => $id]);
-		$row = $stmt->fetch();
+    case 'update':
+        $result = $cartModel->update($id, $cantidad);
+        echo json_encode($result);
+        break;
 
-		$existe = false;
-		$index = null;
-
-		foreach($carrito as $key => $item){
-			if($item['id'] == $id){
-				$existe = true;
-				$index = $key;
-			}
-		}
-
-		if($existe){
-
-			$cantidades = $cantidad + $carrito[$index]['cantidad'];
-
-			if($row['stock'] >= $cantidades){
-
-				$carrito[$index]['cantidad'] += $cantidad;
-				$data['status'] = true;
-
-			}else{
-				$data['status'] = false;
-				$data['error'] = 'El stock es menor a la cantidad solicitada';
-			}
-
-
-		}else{
-
-			if($row['stock'] >= 1){
-				$carrito[] = [
-					'id' => $row['game_id'],
-					'titulo' => $row['titulo'],
-					'img' => $row['img'],
-					'precio' => $row['precio'],
-					'cantidad' => $cantidad
-				];
-
-				$data['status'] = true;
-			}else{
-				$data['status'] = false;
-				$data['error'] = 'El stock es menor a la cantidad solicitada';
-			}
-
-			
-		}
-
-		$_SESSION['carrito'] = $carrito;
-
-		echo json_encode($data);
-		
-		break;
-
-	case 'update':
-
-		$stmt = $pdo->prepare("SELECT * FROM games WHERE game_id = :id");
-		$stmt->execute(['id' => $id]);
-		$row = $stmt->fetch();
-
-		$index = null;
-
-		foreach($carrito as $key => $item){
-			if($item['id'] == $id){
-				$index = $key;
-			}
-		}
-
-		if($row['stock'] >= $cantidad){
-
-			$carrito[$index]['cantidad'] = $cantidad;
-			$data['status'] = true;
-
-		}else{
-			$data['status'] = false;
-			$data['error'] = 'El stock es menor a la cantidad solicitada';
-		}
-
-		$_SESSION['carrito'] = $carrito;
-
-		echo json_encode($data);
-
-	break;
-
-	case 'delete':
-
-		foreach($carrito as $key => $item){
-			if($item['id'] == $id){
-				array_splice($carrito, $key, 1);
-			}
-		}
-
-		$_SESSION['carrito'] = $carrito;
-		
-		$data['status'] = true;
-
-		echo json_encode($data);
-		
-		break;
-	
-	default:
-		// code...
-		break;
+    case 'delete':
+        $result = $cartModel->remove($id);
+        echo json_encode($result);
+        break;
+    
+    default:
+        echo json_encode(['status' => false, 'error' => 'Invalid action']);
+        break;
 }
